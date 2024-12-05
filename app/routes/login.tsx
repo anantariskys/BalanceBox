@@ -1,27 +1,35 @@
 import Button from "~/components/Button";
 import Logo from "../../public/favicon.png";
 import Makanan from "../assets/foodImage.png";
+import { SwiperSlide ,Swiper} from "swiper/react";
+import "swiper/css";
+import { Autoplay, Pagination } from "swiper/modules";
+import "swiper/css/pagination";
+import "../styles/swiper.css"
+import { dummy } from "~/data/dummy";
+import FoodCard from "~/components/auth/FoodCard";
+import { Link } from "@remix-run/react";
 const login = () => {
   return (
-    <div className="h-screen  container">
+    <div className="h-screen  container ">
       <main className="w-full h-full  flex">
         <section className="w-1/2 relative  flex justify-center items-center">
-          <div className="relative  w-full  mx-auto">
-            <img
-              src={Makanan}
-              alt="Gulai Ayam"
-              draggable='false'
-              className="w-3/5 mx-auto object-cover relative z-10 rounded-lg"
-            />
-
-            <p className="absolute left-1/2 -translate-x-1/2 top-4  text-5xl font-extrabold text-primary">
-            SOTO AYAM
-            </p>
-            <p className="absolute text-stroke left-1/2 -translate-x-1/2 top-4 z-20  text-5xl font-extrabold text-transparent ">
-            SOTO AYAM
-            </p>
-            <p className="text-center max-w-md mx-auto -mt-10">Perpaduan bumbu seperti kunyit, serai, daun jeruk, lengkuas, dan cabai yang menghasilkan perpaduan rasa gurih dan pedas yang khas.</p>
-          </div>
+        <Swiper className="w-full "
+        pagination={{ clickable: true}}
+        loop={true}
+        autoplay={{ delay: 2000 }}
+        modules={[Pagination,Autoplay]}
+        >
+          {
+            dummy.map((item) => ( 
+              <SwiperSlide className="py-10" key={item.id}>
+                <FoodCard key={item.id} name={item.name} img={item.image} description={item.description}/>
+              </SwiperSlide>
+            ))
+          }
+       
+         
+        </Swiper>
           
         </section>
         <section className="w-1/2 flex flex-col items-center space-y-8 justify-center">
@@ -66,6 +74,7 @@ const login = () => {
             <Button type="submit" variant="default" width="w-full">
               Masuk
             </Button>
+            <p className="text-center text-sm">Belum punya akun? <Link className="underline text-primary" to={'/register'}>Daftar</Link></p>
           </form>
         </section>
       </main>
