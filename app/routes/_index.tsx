@@ -7,6 +7,7 @@ import Dropdown from "~/components/Dropdown";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import FoodCard from "~/components/FoodCard";
+import { Link } from "@remix-run/react";
 
 export const meta: MetaFunction = () => {
   return [
@@ -27,7 +28,6 @@ const foodData = [
   { distance: 0.9, nama: "Gado-Gado", rating: 2.5, price: 8, time: 12 },
 ];
 
-
 export default function Index() {
   return (
     <PageLayout>
@@ -46,7 +46,12 @@ export default function Index() {
             </Button>
           </section>
           <section className="w-1/2 p-10">
-            <img src={HeroImage} alt="heroImage" draggable='false' className="w-full" />
+            <img
+              src={HeroImage}
+              alt="heroImage"
+              draggable="false"
+              className="w-full"
+            />
           </section>
         </main>
       </header>
@@ -58,22 +63,20 @@ export default function Index() {
           Kategori Makanan
         </h3>
         <Dropdown onSelect={(category) => console.log(category)} />
-        <Swiper
-          spaceBetween={16}
-          slidesPerView={5}
-          navigation
-    
-        
-        >
-          {
-            foodData.map((food, index) => (
-              <SwiperSlide key={index}>
-                <FoodCard distance={food.distance} nama={food.nama} rating={food.rating} price={food.price} time={food.time}/>
-              </SwiperSlide>
-            ))
-          }
-       
-         
+        <Swiper spaceBetween={16} slidesPerView={5} navigation>
+          {foodData.map((food, index) => (
+            <SwiperSlide key={index}>
+              <Link to={`/food/${index}`}>
+                <FoodCard
+                  distance={food.distance}
+                  nama={food.nama}
+                  rating={food.rating}
+                  price={food.price}
+                  time={food.time}
+                />
+              </Link>
+            </SwiperSlide>
+          ))}
         </Swiper>
       </section>
     </PageLayout>
