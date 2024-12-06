@@ -11,7 +11,7 @@ const food = () => {
   console.log(data);
   return (
     <PageLayout>
-      <main className="container  h-screen bg-slate-500">
+      <main className="container flex items-center justify-center h-screen bg-slate-500">
         <div>ini halaman {data.id}</div>
       </main>
     </PageLayout>
