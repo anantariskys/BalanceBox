@@ -41,9 +41,13 @@ export default function Index() {
               Kami mengatur asupan nutrisi dengan mudah. Yuk, mulai bersama
               BalanceBox!
             </p>
+            <Link to={'/login'}
+            >
+
             <Button type="button" variant="default" width="w-fit">
               Mulai
             </Button>
+            </Link>
           </section>
           <section className="w-1/2 p-10">
             <img
